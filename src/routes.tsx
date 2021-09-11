@@ -12,6 +12,7 @@ const Routes: React.FC = () => (
   <Navigator
     screenOptions={{
       headerShown: false,
+      animationEnabled: false,
     }}>
     <Screen name="Dashboard" component={Dashboard} />
     <Screen name="uses" component={Uses} />

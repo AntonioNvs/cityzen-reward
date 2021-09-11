@@ -4,6 +4,7 @@ import {Dimensions} from 'react-native';
 import Colors from '../../styles/colors.json';
 
 const screenWidth = Dimensions.get('screen').width;
+const screenHeight = Dimensions.get('screen').height;
 
 export const RunMainContainer = styled.View`
   position: absolute;
@@ -27,4 +28,32 @@ export const InformationTextContainer = styled.View`
   width: 100%;
   margin-bottom: 16px;
   justify-content: center;
+`;
+
+export const TabWarningContainer = styled.View`
+  position: absolute;
+
+  top: ${screenHeight / 2 - 100}px;
+  margin: auto;
+  align-self: center;
+
+  width: 80%;
+  height: 156px;
+
+  padding: 16px;
+  border-radius: 12px;
+
+  justify-content: space-between;
+
+  background-color: ${Colors.white};
+`;
+
+export const TabWarningButtonsContainer = styled.View`
+  flex-direction: row;
+
+  padding-right: 32px;
+  padding-left: 32px;
+
+  justify-content: space-between;
+  align-items: center;
 `;

@@ -11,12 +11,14 @@ import {Header} from './styles';
 interface BackgroundWithHeaderProps {
   nameIcon: 'menu' | 'arrow-back';
   justifyContent: 'space-between' | 'center';
+  transparent?: number;
 }
 
 const BackgroundWithHeader: React.FC<BackgroundWithHeaderProps> = ({
   nameIcon,
   children,
   justifyContent,
+  transparent,
 }) => {
   const [offset] = useState(new Animated.ValueXY({x: 0, y: -100}));
   const [opacity] = useState(new Animated.Value(0));
@@ -68,7 +70,10 @@ const BackgroundWithHeader: React.FC<BackgroundWithHeaderProps> = ({
   return (
     <LinearGradient
       colors={[Colors.black, 'rgba(6, 7, 10, 0.88)']}
-      style={{flex: 1}}>
+      style={{
+        flex: 1,
+        opacity: transparent || 1,
+      }}>
       <Header>
         <TouchableOpacity
           onPress={handlePageWithIcon}
