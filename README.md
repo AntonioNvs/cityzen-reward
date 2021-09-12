@@ -3,8 +3,8 @@
 # Hackaton da Fundação Estudar - Sustentabilidade
 
 - [Problema](#o-problema)
-- [Solução](solução)
-- [Atualizações futuras](atualizações-futuras)
+- [Solução](#solução)
+- [Atualizações futuras](#atualizações-futuras)
 
 ## O problema
 
