@@ -13,8 +13,10 @@
 - [X] Cronômetro
 - [X] Sistema de medição de kilometragem
 - - [X] Geolocalização
-- [ ] Tela de reciclagem (estática)
-- [ ] Tela de mostragem de possíveis usos
-- - [ ] Navegação para Tela de confirmação
+- [X] Tela de reciclagem (estática)
+- [X] Tela de mostragem de possíveis usos
+- - [X] Navegação para Tela de confirmação
 - - [ ] Integração com NFC
-- [ ] Tela de confirmação de compra
+- [X] Tela de confirmação de compra
+- [X] Tela de mapas
+- [X] API do Google Maps

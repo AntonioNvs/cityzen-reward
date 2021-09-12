@@ -6,6 +6,7 @@ import Uses from './pages/Uses/Uses';
 import Recycling from './pages/Recycling/Recycling';
 import Run from './pages/Run/Run';
 import VerifyPay from './pages/VerifyPay/VerifyPay';
+import Maps from './pages/Maps/Maps';
 
 const {Navigator, Screen} = createStackNavigator();
 
@@ -20,6 +21,7 @@ const Routes: React.FC = () => (
     <Screen name="recycling" component={Recycling} />
     <Screen name="run" component={Run} />
     <Screen name="verifyPay" component={VerifyPay} />
+    <Screen name="maps" component={Maps} />
   </Navigator>
 );
 

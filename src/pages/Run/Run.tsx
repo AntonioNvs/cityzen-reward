@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
-import {PermissionsAndroid, Alert} from 'react-native';
+import {Alert} from 'react-native';
 
 import Geolocation from 'react-native-geolocation-service';
-
+import {requestLocationPermission} from '../../utils/requestPermission';
 import {getPreciseDistance} from 'geolib';
 
 import {TouchableOpacity, StyleSheet} from 'react-native';
@@ -130,23 +130,6 @@ const Run: React.FC = () => {
 
     return dis;
   }
-
-  // Permissão de geolocalização
-  async function requestLocationPermission() {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-      if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-        Alert.alert(
-          'Sem a permissão, não será possível usar a funcionalidade.',
-        );
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-  }
-
   return (
     <>
       <BackgroundWithHeader
