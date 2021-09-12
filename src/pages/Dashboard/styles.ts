@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import Colors from '../../styles/colors.json';
@@ -11,8 +12,20 @@ export const CardContainer = styled(LinearGradient).attrs({
   end: {x: 1, y: 0},
 })`
   width: 100%;
+  height: 30%;
   padding: 12px;
   border-radius: 8px;
+`;
+
+export const ImageCard = styled(Image).attrs({
+  source: require('../../../assets/images/transparent-details.png'),
+})`
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  width: 100%;
+  height: 90%;
 `;
 
 export const CardTopContainer = styled.View`
@@ -23,14 +36,16 @@ export const CardTopContainer = styled.View`
   margin-bottom: 12px;
 `;
 
-export const CardBottomContainer = styled.View``;
+export const CardBottomContainer = styled.View`
+  margin-top: 16px;
+`;
 
 export const TransactionsContainer = styled.View`
   margin-top: 20px;
 `;
 
 export const TransactionCardContainer = styled.View`
-  margin-top: 12px;
+  margin-top: 24px;
 
   flex-direction: row;
   justify-content: space-between;
@@ -50,10 +65,10 @@ export const IconTransactionContainer = styled(LinearGradient).attrs({
   start: {x: 0, y: 0},
   end: {x: 1, y: 0},
 })`
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   margin-right: 8px;
-  border-radius: 24px;
+  border-radius: 28px;
 
   align-items: center;
   justify-content: center;

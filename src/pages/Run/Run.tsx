@@ -157,7 +157,7 @@ const Run: React.FC = () => {
           <DistanceContainer>
             <TextComponent
               textAlign="center"
-              fontSize={5.3}
+              fontSize={5.6}
               fontFamily="Lato-Bold">
               {
                 // Transformando a distância 'm' em 'km'
@@ -166,10 +166,7 @@ const Run: React.FC = () => {
                 })
               }
             </TextComponent>
-            <TextComponent
-              color={Colors.gray}
-              fontSize={2.66}
-              textAlign="center">
+            <TextComponent color={Colors.gray} fontSize={3} textAlign="center">
               km
             </TextComponent>
           </DistanceContainer>
@@ -186,7 +183,7 @@ const Run: React.FC = () => {
               style={styles.buttonInitOrStop}>
               <MaterialIcons
                 name={!wasStarted ? 'play-arrow' : 'stop'}
-                size={30}
+                size={48}
                 color={Colors.white}
               />
             </LinearGradient>
@@ -196,7 +193,7 @@ const Run: React.FC = () => {
             <Cronometer started={wasStarted} />
             <TextComponent
               textAlign="center"
-              fontSize={1.1}
+              fontSize={1.5}
               color={Colors.blueGray}>
               Tempo decorrido
             </TextComponent>
@@ -204,7 +201,7 @@ const Run: React.FC = () => {
         </RunMainContainer>
 
         <InformationTextContainer>
-          <TextComponent textAlign="center" color={Colors.gray}>
+          <TextComponent textAlign="center" color={Colors.gray} fontSize={1.4}>
             1km = 0.5 citizen coin
           </TextComponent>
         </InformationTextContainer>
@@ -287,7 +284,7 @@ const Cronometer: React.FC<CronometerProps> = ({started}) => {
   return (
     <TextComponent
       textAlign="center"
-      fontSize={2}
+      fontSize={2.6}
       fontFamily="Lato-Bold"
       color={Colors.blueGray}>
       {secondsToTimezone(seconds)}
@@ -297,9 +294,9 @@ const Cronometer: React.FC<CronometerProps> = ({started}) => {
 
 const styles = StyleSheet.create({
   buttonInitOrStop: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 72,
+    height: 72,
+    borderRadius: 36,
     alignItems: 'center',
     justifyContent: 'center',
   },

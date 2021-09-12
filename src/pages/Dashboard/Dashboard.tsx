@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -24,6 +24,7 @@ import {
   CoinTransactionContainer,
   InformationTextTransactionContainer,
   CardAndTransactionContainer,
+  ImageCard,
 } from './styles';
 
 const Dashboard: React.FC = () => {
@@ -38,6 +39,7 @@ const Dashboard: React.FC = () => {
       <BackgroundWithHeader nameIcon="menu" justifyContent="space-between">
         <CardAndTransactionContainer>
           <CardContainer>
+            <ImageCard />
             <CardTopContainer>
               <MaterialIcons name="nfc" size={56} color={Colors.white} />
               <TextComponent
@@ -85,10 +87,13 @@ const Dashboard: React.FC = () => {
                 </IconTransactionContainer>
 
                 <InformationTextTransactionContainer>
-                  <TextComponent textAlign="left" fontSize={1.2}>
+                  <TextComponent textAlign="left" fontSize={1.4}>
                     Passagem de ônibus
                   </TextComponent>
-                  <TextComponent textAlign="left" color={Colors.gray}>
+                  <TextComponent
+                    textAlign="left"
+                    color={Colors.gray}
+                    fontSize={1.2}>
                     05 de setembro de 2021, 11:56
                   </TextComponent>
                 </InformationTextTransactionContainer>
@@ -109,10 +114,13 @@ const Dashboard: React.FC = () => {
                 </IconTransactionContainer>
 
                 <InformationTextTransactionContainer>
-                  <TextComponent textAlign="left" fontSize={1.2}>
+                  <TextComponent textAlign="left" fontSize={1.4}>
                     Reciclagem
                   </TextComponent>
-                  <TextComponent textAlign="left" color={Colors.gray}>
+                  <TextComponent
+                    textAlign="left"
+                    color={Colors.gray}
+                    fontSize={1.2}>
                     03 de setembro de 2021, 14:31
                   </TextComponent>
                 </InformationTextTransactionContainer>
@@ -137,10 +145,13 @@ const Dashboard: React.FC = () => {
                 </IconTransactionContainer>
 
                 <InformationTextTransactionContainer>
-                  <TextComponent textAlign="left" fontSize={1.2}>
+                  <TextComponent textAlign="left" fontSize={1.4}>
                     Corrida
                   </TextComponent>
-                  <TextComponent textAlign="left" color={Colors.gray}>
+                  <TextComponent
+                    textAlign="left"
+                    color={Colors.gray}
+                    fontSize={1.2}>
                     29 de agosto de 2021, 07:25
                   </TextComponent>
                 </InformationTextTransactionContainer>
@@ -161,10 +172,13 @@ const Dashboard: React.FC = () => {
                 </IconTransactionContainer>
 
                 <InformationTextTransactionContainer>
-                  <TextComponent textAlign="left" fontSize={1.2}>
+                  <TextComponent textAlign="left" fontSize={1.4}>
                     Passagem de metrô
                   </TextComponent>
-                  <TextComponent textAlign="left" color={Colors.gray}>
+                  <TextComponent
+                    textAlign="left"
+                    color={Colors.gray}
+                    fontSize={1.2}>
                     28 de agosto de 2021, 06:00
                   </TextComponent>
                 </InformationTextTransactionContainer>

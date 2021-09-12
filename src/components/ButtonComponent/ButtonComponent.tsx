@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../../styles/colors.json';
 
 interface ButtonComponentProps {
-  action(): null;
+  action(): void;
   width: number;
   height: number;
   type: 'linear' | 'solid';
@@ -28,7 +28,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({
 }) => {
   return (
     <>
-      {type === 'linear' ? (
+      {type === 'solid' ? (
         <TouchableOpacity
           onPress={action}
           style={{
@@ -45,14 +45,14 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({
           colors={[primaryColor, secondaryColor || Colors.white]}
           useAngle={true}
           style={{
-            flex: 1,
+            width,
+            height,
+            borderRadius,
           }}>
           <TouchableOpacity
             onPress={action}
             style={{
-              width,
-              height,
-              borderRadius,
+              flex: 1,
               ...rest,
             }}>
             {children}
