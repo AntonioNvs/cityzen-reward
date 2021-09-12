@@ -2,6 +2,10 @@
 
 # Hackaton da Fundação Estudar - Sustentabilidade
 
+- [Problema](#o-problema)
+- [Solução](solução)
+- [Atualizações futuras](atualizações-futuras)
+
 ## O problema
 
 A sociedade atual demonstra árduas dificuldades em superar e mitigar problemas que, em concepção, são simples, sendo eles a sustentabilidade e saúde. Segundo o estudo da Revista Ciência e Saúde Coletiva, teríamos uma economia de R$1.14 bilhão aos cofres públicos caso o sedentarismo fosse a metade do que é hoje. Além disso, outro estudo feito pelo Centro de Tecnologia de Embalagens (CETEA) em parceria com o Compromisso Empresarial para Reciclagem (CEMPRE), estimou que, por ano, 53.2 milhões de toneladas de CO2 são lançadas na atmosfera a partir de resíduos urbanos que poderiam ser reciclados.
@@ -16,6 +20,7 @@ A solução hospedada neste repositório consiste na parte estática, com alguma
 - [Integração](#integração)
 - [Geolocalização](#geolocalização)
 - [Uso do NFC](#nfc)
+- [Back-end](#back-end)
 
 ### Instalação
 
@@ -149,6 +154,12 @@ export function readNdef() {
   });
 }
 ```
+
+### Back-end
+
+Não foi construído a parte lógica e funcional da aplicação, entretanto, foi idealizada. Seria desenvolvida em Python com a ferramenta Flask, com o banco de dados Postgres e hospedagem no Amazon Web Service.
+
+A lógica seria a integração entre todas as entidades envolvidas e armazenamento em nuvem dos dados pessoais e manipulação dos Cityzen Credit dos usuários nas transações.
 
 ## Atualizações futuras
 
