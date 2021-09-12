@@ -106,3 +106,59 @@ O sistema descrito e utilizado se encontra [aqui](src/pages/Run/Run.tsx), com o 
 
 ### NFC
 
+O uso do NFC foi construído em base na biblioteca [react-native-nfc-manager](https://github.com/revtel/react-native-nfc-manager), na qual foi possível utilizar o componente nativo de NFC do dispositivo para ler um sinal próximo ao aparelho.
+
+Em ideia da aplicação, seu uso consistiria em aproximar de uma máquina ou aparelho celular (outra aplicação de escrita de sinal NFC) do local de gasto dos Cityzen Credit, ou seja, estariam disponíveis no ônibus, metrô, nas localidades de eventos culturais e na própria prefeitura para abater em contas públicas.
+
+O sistema descrito e utilizado se encontra [aqui](src/code/nfc.ts), com o seguinte código chave:
+
+```ts
+// Inicialização da leitura do NFC, tendo que ser feita antes de qualquer tentativa de leitura
+export async function initNfc() {
+  await NfcManager.start();
+}
+
+export function readNdef() {
+  // Retirada dos eventos setados ao finalizar o processo de leitura
+  const cleanUp = () => {
+    NfcManager.setEventListener(NfcEvents.DiscoverTag, null);
+    NfcManager.setEventListener(NfcEvents.SessionClosed, null);
+  };
+
+  // Promise de espera de leitura da máquina
+  return new Promise(resolve => {
+    let tagFound = null;
+
+    // Quando conseguir ler o equipamento, é disparado tal evento de retorno das informações
+    NfcManager.setEventListener(NfcEvents.DiscoverTag, tag => {
+      tagFound = tag;
+      resolve(tagFound);
+
+      NfcManager.unregisterTagEvent().catch(() => 0);
+    });
+
+    NfcManager.setEventListener(NfcEvents.SessionClosed, () => {
+      // Em caso a sessão feche, resete os eventos e retorne a função
+      cleanUp();
+      if (!tagFound) {
+        resolve();
+      }
+    });
+
+    NfcManager.registerTagEvent();
+  });
+}
+```
+
+## Atualizações futuras
+
+O sistema é escalável devido a alta demanda na sociedade, para o seu necessário e urgente desenvolvimento sustentável. Logo, o aplicativo atual é somente um indício de todas as aplicabilidades que poderiam ser feitas, dentre tais:
+
+- **Uso de blockchain nas transações**
+- **Gamificação**
+- **Adição de novas possibilidades de ganho e compra de Cityzen Credit**
+- **Aplicação dos agentes municipais, que estariam disponíveis nos meios de compra**
+
+
+
+*Todos os direitos reservados para o respectivo produtor da aplicação - Antônio Caetano Neves Neto ©*
