@@ -16,7 +16,7 @@
 - [X] Tela de reciclagem (estática)
 - [X] Tela de mostragem de possíveis usos
 - - [X] Navegação para Tela de confirmação
-- - [ ] Integração com NFC
+- - [X] Integração com NFC
 - [X] Tela de confirmação de compra
 - [X] Tela de mapas
 - [X] API do Google Maps

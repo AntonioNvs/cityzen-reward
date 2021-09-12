@@ -25,6 +25,7 @@ import {
 const Recycling: React.FC = () => {
   const navigation = useNavigation();
 
+  // Navegação para o mapa
   function goToMaps() {
     navigation.navigate('maps');
   }

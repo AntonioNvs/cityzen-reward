@@ -26,23 +26,31 @@ const Uses: React.FC = () => {
 
   const navigation = useNavigation();
 
+  // Inicializando a função de start do NFC
   useEffect(() => {
     initNfc().then(() => {});
   }, []);
 
-  // Opacidade do background
+  // Opacidade do background ao ativar ou desativar a tela de aviso
   useEffect(() => {
     setBackgroundOpacity(loadNFC ? 0.9 : 1);
   }, [loadNFC]);
 
+  // Função de leitura da máquina
   async function tabReadNFC(item: string) {
     setLoadNFC(true);
 
     const response = await readNdef();
 
+    /*
+      AQUI LOCALIZARIA O CÓDIGO DE MANIPULAÇÃO DAS INFORMAÇÕES OBTIDAS POR
+      MEIO DE ACESSOS AS API'S
+    */
+
     goToVerifyPayPage(item);
   }
 
+  // Navegando para página de verificação, com o envio do parâmetro do item selecionado.
   async function goToVerifyPayPage(item: string): Promise<void> {
     navigation.navigate('verifyPay', {
       item,

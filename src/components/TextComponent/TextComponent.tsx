@@ -23,7 +23,7 @@ const TextComponent: React.FC<TextComponentProps> = ({
   children,
   ...rest
 }) => {
-  // Responsividade na propriedade de tamanho da fonte do texto
+  // Possibilidade de responsividade na propriedade de tamanho da fonte do texto
   fontSize = (fontSize || 1) * 12;
 
   return (

@@ -1,5 +1,6 @@
 import {PermissionsAndroid, Alert} from 'react-native';
 
+// Pedido de permissão de geolocalização para o usuário
 export async function requestLocationPermission() {
   try {
     const granted = await PermissionsAndroid.request(

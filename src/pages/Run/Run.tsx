@@ -43,29 +43,15 @@ function secondsToTimezone(seconds: number): string {
 
 const Run: React.FC = () => {
   const [wasStarted, setWasStarted] = useState(false);
-  const [position, setPosition] = useState<Geolocation.GeoPosition>(
-    {} as Geolocation.GeoPosition,
-  );
-  const [informationHasBeenLoaded, setInformationHasBeenLoaded] =
-    useState(false);
+  const [position, setPosition] = useState<Geolocation.GeoPosition[]>([]);
   const [watchId, setWatchId] = useState(0);
   const [distance, setDistance] = useState(0);
   const [loadWarning, setLoadWarning] = useState(false);
   const [backgroundOpacity, setBackgroundOpacity] = useState(1);
 
-  // Informações iniciais
+  // Permissão
   useEffect(() => {
-    requestLocationPermission().then(() =>
-      // Obtendo a posição atual
-      Geolocation.getCurrentPosition(
-        position => {
-          setPosition(position);
-          setInformationHasBeenLoaded(true);
-        },
-        error => Alert.alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 2000, maximumAge: 0},
-      ),
-    );
+    requestLocationPermission().then(() => {});
   }, []);
 
   // Opacidade do background
@@ -75,11 +61,6 @@ const Run: React.FC = () => {
 
   // Atualização do estado da corrida
   function handleStateRun() {
-    // Informação da posição atual tem que ser carregada primeiro
-    if (!informationHasBeenLoaded) {
-      return;
-    }
-
     !wasStarted ? _start() : _stop();
   }
 
@@ -89,12 +70,18 @@ const Run: React.FC = () => {
         latPos => {
           // Atualizando a distância
           setDistance(dis => dis + calcDistance(latPos));
+
+          // Atualizando a posição
+          const newPos = position;
+          newPos.push(latPos);
+          setPosition(newPos);
+
+          console.log(position);
         },
         error => Alert.alert(JSON.stringify(error)),
         {
           enableHighAccuracy: true, // Uso de GPS ao invés de Wi-fi
-          interval: 5000, // Intervalo máximo de atualização
-          distanceFilter: 12, // Distância mínima (m) de atualização
+          distanceFilter: 2, // Distância mínima (m) de atualização
         },
       ),
     );
@@ -111,25 +98,42 @@ const Run: React.FC = () => {
     Geolocation.clearWatch(watchId); // Removendo o observador
     setWasStarted(false);
     setDistance(0);
+    setPosition([]);
   }
 
   // Cálculo da distância entre duas geolocalizações
   function calcDistance(currentPos: Geolocation.GeoPosition) {
-    const dis = getPreciseDistance(
-      {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      },
-      {
-        latitude: currentPos.coords.latitude,
-        longitude: currentPos.coords.longitude,
-      },
-    );
+    let dis = 0;
 
-    setPosition(currentPos);
+    if (position.length !== 0) {
+      const lastIndex = position.length - 1;
+
+      /*
+        AQUI LOCALIZARIA A FUNÇÃO DE VERIFICAÇÃO DA VERACIDADE DA CORRIDA,
+        OU SEJA, O ALGORITMO ANTI-BURLAGEM, COM O FUNCIONAMENTO IDEALIZADO
+        NO VÍDEO DO PROTÓTIPO
+      */
+
+      dis = getPreciseDistance(
+        {
+          latitude: position[lastIndex].coords.latitude,
+          longitude: position[lastIndex].coords.longitude,
+        },
+        {
+          latitude: currentPos.coords.latitude,
+          longitude: currentPos.coords.longitude,
+        },
+      );
+    }
 
     return dis;
   }
+
+  // Transforma os kilômetros andados na moeda
+  function kmToCityzen(): number {
+    return (distance * 3) / 1000;
+  }
+
   return (
     <>
       <BackgroundWithHeader
@@ -185,7 +189,7 @@ const Run: React.FC = () => {
 
         <InformationTextContainer>
           <TextComponent textAlign="center" color={Colors.gray} fontSize={1.4}>
-            1km = 0.5 citizen coin
+            1km = 3 cityzen coin
           </TextComponent>
         </InformationTextContainer>
       </BackgroundWithHeader>
@@ -193,9 +197,7 @@ const Run: React.FC = () => {
         // Carregar aviso
         loadWarning && (
           <TabRunWarning
-            text={`Deseja realmente parar sua corrida? Você está ganhando ${
-              distance / 2000
-            } CT`}
+            text={`Deseja realmente parar sua corrida? Você está ganhando ${kmToCityzen()} CT`}
             action={stopWatching}
             setLoadWarning={setLoadWarning}
           />
@@ -211,6 +213,7 @@ interface TabWarningProps {
   setLoadWarning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+// Componente de confimação do término da corrida
 const TabRunWarning: React.FC<TabWarningProps> = ({
   text,
   action,
@@ -225,6 +228,7 @@ const TabRunWarning: React.FC<TabWarningProps> = ({
       <TabWarningButtonsContainer>
         <TouchableOpacity
           onPress={() => {
+            // Realização da ação de término e alterando o estado de visualização do componente
             action();
             setLoadWarning(false);
           }}>
@@ -253,15 +257,17 @@ const Cronometer: React.FC<CronometerProps> = ({started}) => {
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
+    // Se o cronômetro estiver ativo, acrescente 1 segundo no estado determinado
     if (started) {
       interval = setInterval(() => {
         setSeconds(sec => sec + 1);
       }, 1000);
     } else {
+      // Caso esteja desativado, zere o cronômetro
       setSeconds(0);
     }
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // Reseta o setInterval
   }, [started, seconds]);
 
   return (

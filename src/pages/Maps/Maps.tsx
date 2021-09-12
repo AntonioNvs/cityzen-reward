@@ -34,6 +34,7 @@ const Maps: React.FC = () => {
 
   const navigation = useNavigation();
 
+  // Pedindo permissão ao usuário e guardando sua posição atual
   useEffect(() => {
     requestLocationPermission().then(() =>
       // Obtendo a posição atual
@@ -45,7 +46,7 @@ const Maps: React.FC = () => {
           });
         },
         error => Alert.alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 2000, maximumAge: 0},
+        {enableHighAccuracy: true, maximumAge: 0},
       ),
     );
   }, []);
@@ -60,6 +61,7 @@ const Maps: React.FC = () => {
           latitudeDelta: 0.09,
           longitudeDelta: 0.04,
         }}>
+        {/* Marcadores */}
         <Marker coordinate={{latitude: -18.8685335, longitude: -41.987527}}>
           <CardMap>
             <Image

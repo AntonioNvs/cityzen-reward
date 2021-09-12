@@ -28,37 +28,40 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({
 }) => {
   return (
     <>
-      {type === 'solid' ? (
-        <TouchableOpacity
-          onPress={action}
-          style={{
-            width,
-            height,
-            borderRadius,
-            backgroundColor: primaryColor,
-            ...rest,
-          }}>
-          {children}
-        </TouchableOpacity>
-      ) : (
-        <LinearGradient
-          colors={[primaryColor, secondaryColor || Colors.white]}
-          useAngle={true}
-          style={{
-            width,
-            height,
-            borderRadius,
-          }}>
+      {
+        // Retorne certo tipo de componente do botão baseado no background do mesmo
+        type === 'solid' ? (
           <TouchableOpacity
             onPress={action}
             style={{
-              flex: 1,
+              width,
+              height,
+              borderRadius,
+              backgroundColor: primaryColor,
               ...rest,
             }}>
             {children}
           </TouchableOpacity>
-        </LinearGradient>
-      )}
+        ) : (
+          <LinearGradient
+            colors={[primaryColor, secondaryColor || Colors.white]}
+            useAngle={true}
+            style={{
+              width,
+              height,
+              borderRadius,
+            }}>
+            <TouchableOpacity
+              onPress={action}
+              style={{
+                flex: 1,
+                ...rest,
+              }}>
+              {children}
+            </TouchableOpacity>
+          </LinearGradient>
+        )
+      }
     </>
   );
 };

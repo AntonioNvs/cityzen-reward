@@ -30,6 +30,7 @@ import {
 const Dashboard: React.FC = () => {
   const navigation = useNavigation();
 
+  // Navegação da TabBottomBar
   function changePageWithTabBar(page: string): void {
     navigation.navigate(page);
   }

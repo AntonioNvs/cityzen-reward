@@ -26,6 +26,7 @@ const BackgroundWithHeader: React.FC<BackgroundWithHeaderProps> = ({
 
   const navigation = useNavigation();
 
+  // Parte da animação
   useEffect(() => {
     if (load) {
       Animated.parallel([
@@ -61,6 +62,7 @@ const BackgroundWithHeader: React.FC<BackgroundWithHeaderProps> = ({
     navigation.addListener('blur', () => setLoad(true));
   }, [load, navigation, opacity, offset]);
 
+  // Caso o ícone for relacionado a volta de página, é executado o método de navegação para trás
   function handlePageWithIcon() {
     if (nameIcon === 'arrow-back') {
       navigation.goBack();
