@@ -2,6 +2,9 @@ import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import Colors from '../../styles/colors.json';
+import {Dimensions} from 'react-native';
+
+const screenHeight = Dimensions.get('screen').height;
 
 export const TopPageContainer = styled.View`
   margin-bottom: 24px;
@@ -58,4 +61,22 @@ export const ItemContainer = styled.View`
   justify-content: space-around;
 
   height: 96px;
+`;
+
+export const TabNFCContainer = styled.View`
+  position: absolute;
+
+  top: ${screenHeight / 2 - 200}px;
+  margin: auto;
+  align-self: center;
+
+  width: 60%;
+  height: 280px;
+
+  padding: 8px;
+  border-radius: 12px;
+
+  justify-content: center;
+  align-items: center;
+  background-color: ${Colors.black};
 `;

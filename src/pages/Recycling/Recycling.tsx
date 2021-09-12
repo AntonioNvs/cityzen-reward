@@ -51,7 +51,7 @@ const Recycling: React.FC = () => {
             150
           </TextComponent>
           <TextComponent fontSize={1.4} textAlign="center" color={Colors.gray}>
-            citizen ganhos
+            cityzen ganhos
           </TextComponent>
         </TopInfoCardContainer>
       </TopInfoContainer>
@@ -119,7 +119,7 @@ const Recycling: React.FC = () => {
               fontFamily="Lato-Bold"
               fontSize={1.2}
               textAlign="center">
-              kg para 1 citizen
+              kg para 1 cityzen
             </TextComponent>
 
             <TextComponent

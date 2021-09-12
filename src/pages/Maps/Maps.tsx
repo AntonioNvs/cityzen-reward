@@ -13,7 +13,7 @@ import Colors from '../../styles/colors.json';
 import TextComponent from '../../components/TextComponent/TextComponent';
 
 import Geolocation from 'react-native-geolocation-service';
-import {requestLocationPermission} from '../../utils/requestPermission';
+import {requestLocationPermission} from '../../code/requestPermission';
 
 import MapView, {Marker} from 'react-native-maps';
 

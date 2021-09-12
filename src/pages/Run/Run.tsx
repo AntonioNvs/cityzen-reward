@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 
 import Geolocation from 'react-native-geolocation-service';
-import {requestLocationPermission} from '../../utils/requestPermission';
+import {requestLocationPermission} from '../../code/requestPermission';
 import {getPreciseDistance} from 'geolib';
 
 import {TouchableOpacity, StyleSheet} from 'react-native';
